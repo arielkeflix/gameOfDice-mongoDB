@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+	<script type="text/javascript" th:fragment="javascript">		
+	
+	$(document).ready(function () {
+		
+		var cube = document.querySelector('.cube');
+		var rollBtn = document.querySelector('#rollBtn');		
+		var cube2 = document.querySelector('.cube2');		
+		var currentClass = '';
+		var currentClass2 = '';
+		var randNum=1 ;
+		var randNum2=2 ;
+		var valor1 = "[[${valorDado1}]]"; 	
+		var valor2 = "[[${valorDado2}]]";			
+		
+		rollDice(valor1);
+		rollDice2(valor2);
+
+		function getRandomInt(min, max) {
+		  min = Math.ceil(min);
+		  max = Math.floor(max);
+		  return Math.floor(Math.random() * (max - min) + min); 
+		}
+
+		function rollDice(randNum) {	
+			
+		  var showClass = 'show-' + randNum;	
+		  
+		  if ( currentClass ) {
+		    cube.classList.remove( currentClass );
+		  }
+		  cube.classList.add( showClass );
+		  currentClass = showClass;		  
+		}
+		
+		function rollDice2(randNum) {			
+			 
+			  var showClass2 = 'show-' + randNum;
+			
+			  if ( currentClass2 ) {
+			    cube2.classList.remove( currentClass2 );
+			  }
+			  cube2.classList.add( showClass2 );
+			  currentClass2 = showClass2;			  			  
+		}
+		
+		function dados(){
+			 randNum =getRandomInt(1,7);
+			 randNum2 =getRandomInt(1,7);
+			
+			document.getElementById("valorDado1").value= randNum ;	
+			document.getElementById("valorDado2").value= randNum2;
+			document.getElementById("formulario").submit();													
+		}
+		
+		rollBtn.addEventListener("click", dados);
+	})			
+			
+	</script>
+</body>
+</html>

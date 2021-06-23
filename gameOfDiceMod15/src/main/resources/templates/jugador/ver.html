@@ -1,0 +1,132 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout::head">
+
+</head>
+<body>
+<header th:replace="layout/layout::header"></header>
+	
+	<div class="container py-4 text-center">
+		<div class="card bg-light">
+			<div class="card-header  text-white bg-secondary "  style="width: 100%;" th:text="${titulo}+   ${jugador.nombre}"></div>
+			<div class="card-body">
+
+				<div class="row">
+					<div  th:if="${!jugador.listaTiradasRojas.isEmpty}" class="col-sm-4">
+
+						<table class="table table-striped table-bordered">
+							<thead>
+								<tr style="font-size: 0.9rem;">
+									<th>Valor dados mesa roja</th>
+									<th>Gano</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="tirada: ${jugador.listaTiradasRojas}">
+									<td style="background: red;" th:text="${tirada}"></td>
+									<td th:if="${tirada==7}" style="background:red;" th:text="${'Si'}"></td>
+									<td th:if="${tirada!=7}" style="background:red;" th:text="${'No'}"></td>
+									
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div  style="background: red;" th:if="${jugador.listaTiradasRojas.isEmpty}" class="col-sm-4" >Mesa roja sin tiradas  </div>
+				
+					<div th:if="${!jugador.listaTiradasAzules.isEmpty}" class="col-sm-4">
+
+						<table class="table table-striped table-bordered">
+							<thead>
+								<tr style="font-size: 0.9rem;">
+									<th>Valor dados mesa azul</th>
+									<th>Gano</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="tirada: ${jugador.listaTiradasAzules}">
+									<td style="background: blue;" th:text="${tirada}"></td>
+									
+									<td th:if="${tirada==7}" style="background:blue;" th:text="${'Si'}"></td>
+									<td th:if="${tirada!=7}" style="background:blue;" th:text="${'No'}"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				<div style="background: blue;" th:if="${jugador.listaTiradasAzules.isEmpty}" class="col-sm-4" >Mesa azul sin tiradas  </div>
+				
+					<div th:if="${!jugador.listaTiradasVerdes.isEmpty}" class="col-sm-4">
+
+						<table class="table table-striped table-bordered">
+							<thead>
+								<tr style="font-size: 0.9rem;">
+									<th>Valor dados mesa verde</th>
+									<th>Gano</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="tirada: ${jugador.listaTiradasVerdes}">
+									<td style="background: green;" th:text="${tirada}"></td>
+									<td th:if="${tirada==7}" style="background:green;" th:text="${'Si'}"></td>
+									<td th:if="${tirada!=7}" style="background:green;" th:text="${'No'}"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div  style="background: green;" th:if="${jugador.listaTiradasVerdes.isEmpty}" class="col-sm-4" >Mesa verde sin tiradas  </div>
+				</div>
+				<div class="row">
+					<div  class="col-sm-4" > 
+					  <span th:if="${!jugador.listaTiradasRojas.isEmpty}" style="background: red; font-size: 1.5rem ;" 
+					       th:text="${'Promedio exitos:  '} +${jugador.getPromedioRoja()} + ${'%  '} " ></span>
+					 </div>
+					 <div  class="col-sm-4" > 
+					  <span th:if="${!jugador.listaTiradasAzules.isEmpty}" style="background: blue; font-size: 1.5rem ;" 
+					       th:text="${'Promedio exitos:  '} +${jugador.getPromedioAzul()} + ${'%  '} " ></span>
+					 </div>
+					 <div  class="col-sm-4" > 
+					  <span th:if="${!jugador.listaTiradasVerdes.isEmpty}" style="background: green; font-size: 1.5rem ;" 
+					       th:text="${'Promedio exitos:  '} +${jugador.getPromedioVerde()} + ${'%  '} " ></span>
+					 </div>
+					 
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout::footer"></footer>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- <tbody>
+		<tr th:each="tirada: ${jugador.listaTiradas}">
+			
+			<td th:text="${tirada.colorDados}"></td>			
+			<td th:text="${tirada.valor}"></td>			
+		</tr>
+	</tbody>
+</table>	
+</body>
+</html>
+
+div th:each="jugador: ${jugadores}">
+
+		<div th:text="${jugador.nombre}"></div>
+			<ul>
+				<div th:each="tirada: ${jugador.listaTiradas}">
+					<li th:text="${tirada.valor}"></li>
+			</ul>
+	   </div>
+	</div> -->

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout::head">
+
+</head>
+<body>
+<header th:replace="layout/layout::header"></header>
+	
+	<div class="container py-4 text-center">
+		<div class="card bg-light">
+			<div class="card-header  text-white bg-secondary "  style="width: 100%;" th:text="${titulo}"></div>
+			<div class="card-body">
+			<div class=" row ">	
+				<div class="col-sm-2">
+				 <a th:href="@{form}" class="btn btn-primary btn-xs ">Crear	jugador</a> 
+				 </div  >
+				 <div sec:authorize="hasRole('ROLE_ADMIN')" class="col-sm-2" ></div>
+				 <div sec:authorize="!hasRole('ROLE_ADMIN')" class="col-sm-3" ></div>
+				 <div class="alert alert-dark col-sm-3">
+				 <span> Promedio de exitos por mesa</span>
+				 </div>
+			 </div>	
+				 
+				
+				<table  class="table table-striped table-bordered table-sm">
+					<thead>
+						<tr style= "font-size: 0.9rem;">
+							<th>Id</th>
+							<th>Nombre</th>
+							
+							<th>Fecha ingreso</th>
+							<th> Mesa roja</th>
+							<th> Mesa azul</th>
+							<th> Mesa verde</th>
+							<th>Listar juegos</th>
+							<th sec:authorize="hasRole('ROLE_USER')">Editar jugador</th>
+							<th sec:authorize="hasRole('ROLE_ADMIN')">Eliminar jugador</th>
+							
+							<th>Eliminar partidas</th>
+							
+						</tr>
+					</thead>
+					<tbody  >
+						<tr  th:each="jugador: ${jugadores} ">
+							
+							 <td style= "font-size: 0.7rem;"  ><a 
+								th:href="@{/ver/} + ${jugador.id}" th:text="${jugador.id}"></a></td> 
+							
+							<td th:text="${jugador.nombre}"></td>
+							<td style= "font-size: 0.8rem;" th:text="${#calendars.format (jugador.fechaIngreso , 'dd-MM-yyyy')}"></td>	
+							<td style= "background:red;"   th:text="${jugador.getPromedioRoja()}+'%'"></td>
+							<td style= "background:blue;" th:text="${jugador.getPromedioAzul()}+'%'"></td>
+							<td style= "background:green;font-size: 0.8rem;" th:text="${jugador.getPromedioVerde()}+'%'"></td>
+							<td >
+							       <a th:href="@{/ver/} + ${jugador.id}" 
+									th:text="${'Listar'}" 
+									class="btn btn-primary btn-sm"></a>
+							</td>
+							
+							
+							<td th:if=" ${jugador.username}==${username}"><a class="btn btn-primary btn-sm"
+								th:href="@{/form/} + ${jugador.id}" th:text="'Editar'"></a></td>
+								<td th:if=" ${jugador.username}!=${username}"> <a class="btn btn-secondary btn-sm"
+								
+								th:text="'Editar '" onclick="alert('Solo puedes editar a ti mismo!');"></a>	
+   					       </td>						
+						 									 			   							
+							
+						   <td sec:authorize="hasRole('ROLE_ADMIN')"><a class="btn btn-danger btn-sm "
+								th:href="@{/eliminar/}+ ${jugador.id}" th:text="'Eliminar '"
+								onclick="return confirm('Estas seguro de eliminar al jugador?' );"> </a>
+						   </td>
+						   
+			
+			<td th:if=" ${jugador.username}==${username}"> <a class="btn btn-secondary btn-sm"
+								th:href="@{/eliminarPartidas/}+ ${jugador.id}" th:text="'Eliminar '"
+								onclick="return confirm('Estas seguro de eliminar todas las partidas?');"></a>	
+   					       </td>
+   					       <td th:if=" ${jugador.username}!=${username}"> <a class="btn btn-secondary btn-sm"
+								
+								th:text="'Eliminar '" onclick="alert('Solo puedes borrar tus propias partidas');"></a>	
+   					       </td>
+   					       		
+						</tr>
+					</tbody>
+				</table>
+			
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout::footer"></footer>
+</body>
+</html>

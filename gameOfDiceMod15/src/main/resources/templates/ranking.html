@@ -1,0 +1,114 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout::head">
+
+</head>
+<body>
+<header th:replace="layout/layout::header"></header>
+	
+	<div class="container py-4 text-center">
+		<div class="card bg-light">
+			<div style="font-size: 1.3rem;" class="card-header  text-white bg-secondary "   th:text="${titulo}"></div>
+			<div class="card-body">
+
+				<div class="row">
+					<div   class="col-sm-4">
+
+						<table style="color:black;" class="table table-striped table-bordered">
+							<thead>
+								<tr style="font-size: 0.9rem;">									
+									<th>Color mesa</th>
+									<th>Winners</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr >
+								<td style="background: red;" th:text="${'Roja'}"></td>
+								<td style="background: red;" th:text="${maxred}"></td>
+																										
+								</tr>
+								<tr >
+								<td style="background: blue;" th:text="${'Azul'}"></td>
+								<td style="background: blue;" th:text="${maxblue}"></td>
+																										
+								</tr>
+								<tr >
+								<td style="background: green;" th:text="${'Verde'}"></td>
+								<td style="background:green;" th:text="${maxgreen}"></td>																										
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div   class="col-sm-4">
+
+						<table style="color:black;" class="table table-striped table-bordered">
+							<thead>
+								<tr style="font-size: 0.9rem;">									
+									<th>Color mesa</th>
+									<th>Losers</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr >
+								<td style="background: red;" th:text="${'Roja'}"></td>
+								<td style="background: red;" th:text="${minred}"></td>
+																										
+								</tr>
+								<tr >
+								<td style="background: blue;" th:text="${'Azul'}"></td>
+								<td style="background: blue;" th:text="${minblue}"></td>
+																										
+								</tr>
+								<tr >
+								<td style="background: green;" th:text="${'Verde'}"></td>
+								<td style="background:green;" th:text="${mingreen}"></td>																										
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div   class="col-sm-4">
+
+						<table style="color:black;" class="table table-striped table-bordered">
+							<thead>
+								<tr style="font-size: 0.9rem;">									
+									<th>Color mesa</th>
+									<th>Promedio general exitos</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr >
+								<td style="background: red;" th:text="${'Roja'}"></td>
+								<td style="background: red;" th:text="${promred}+${'%'}"></td>
+																										
+								</tr>
+								<tr >
+								<td style="background: blue;" th:text="${'Azul'}"></td>
+								<td style="background: blue;" th:text="${promblue}+${'%'}"></td>
+																										
+								</tr>
+								<tr >
+								<td style="background: green;" th:text="${'Verde'}"></td>
+								<td style="background:green;" th:text="${promgreen}+${'%'}"></td>																										
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					
+			</div>
+		</div>
+	</div>
+	</div>
+	<footer th:replace="layout/layout::footer"></footer>
+</body>
+</html>
+
+
+
+
+
+
+
+	
