@@ -34,7 +34,7 @@ public class GameOfDiceMod15Application implements CommandLineRunner{
 		List<String> roles1= Arrays.asList("ROLE_USER");
 		List<String> roles2= Arrays.asList("ROLE_USER","ROLE_ADMIN");
 		
-		Jugador a =new Jugador("Ariel","1234ariel", "$2a$10$6aEib01haLaDUxWn08GKa.hQ4Lzar8X2cLBsN5MQRBzgqZsUKubSy", 1, roles1);
+		Jugador a =new Jugador("Ariel","ariel", "$2a$10$6aEib01haLaDUxWn08GKa.hQ4Lzar8X2cLBsN5MQRBzgqZsUKubSy", 1, roles1);
 		Jugador b =new Jugador("Jorge","Jorge", "$2a$10$6aEib01haLaDUxWn08GKa.hQ4Lzar8X2cLBsN5MQRBzgqZsUKubSy", 1, roles1);
 		Jugador c =new Jugador("Maria","admin", "$2a$10$6aEib01haLaDUxWn08GKa.hQ4Lzar8X2cLBsN5MQRBzgqZsUKubSy", 1, roles2);
 		
